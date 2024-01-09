@@ -12,5 +12,6 @@ dependencies:
     - pytest==6.2.2
     - requests==2.31.0
     - fastapi==0.63.0
-    - uvicorn
-    - gunicorn
+    - uvicorn==0.25.0
+    - gunicorn=21.2.0
+    - flake8==7.0.0
