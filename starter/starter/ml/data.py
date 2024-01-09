@@ -1,5 +1,15 @@
+from pathlib import Path
 import numpy as np
+import pandas as pd
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
+
+
+
+def read_data(path: Path, file_name: str = "census.csv", *args, **kwargs) -> pd.DataFrame:
+    filename = path / file_name
+
+    return pd.read_csv(filename, *args, **kwargs)
+
 
 
 def process_data(
@@ -48,6 +58,7 @@ def process_data(
         y = X[label]
         X = X.drop([label], axis=1)
     else:
+
         y = np.array([])
 
     X_categorical = X[categorical_features].values

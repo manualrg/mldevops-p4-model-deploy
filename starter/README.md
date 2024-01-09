@@ -6,11 +6,60 @@ Working in a command line environment is recommended for ease of use with git an
     * conda create -n [envname] "python=3.8" scikit-learn dvc pandas numpy pytest jupyter jupyterlab fastapi uvicorn -c conda-forge
     * Install git either through conda (“conda install git”) or through your CLI, e.g. sudo apt-get git.
 
-## Repositories
+```bash
+conda create env -f starter/conda_env-yaml
+conda activate mldevops-p4-deploy
+```
 
-* Create a directory for the project and initialize Git and DVC.
-   * As you work on the code, continually commit changes. Trained models you want to keep must be committed to DVC.
-* Connect your local Git repository to GitHub.
+## Testing
+
+Test source code
+```bash
+pytest starter/test_ml.py
+```
+
+Test FastAPI Endpoint
+```bash
+pytest starter/test_main.py
+```
+
+Test integration
+```bash
+pytest starter/sanitycheck.py
+>starter/test_main.py
+```
+
+
+## Spin up Prediction Endpoint 
+```bash
+cd starter
+uvicorn main:app --reload
+```
+### Root
+```bash
+curl http://localhost:8000/
+```
+
+### Predict
+Test Prediction Endpoints
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"age": "52", 
+         "workclass": "State-gov",
+         "fnlgt": "77516",
+         "education": "Bachelors",
+         "education-num": "13",
+         "marital-status": "Never-married",
+         "occupation":"Adm-clerical", 
+         "relationship": "Not-in-family",
+         "race": "White",
+         "sex": "Male",
+         "capital-gain": "2174",
+         "capital-loss": "0",
+         "hours-per-week": "40",
+         "native-country": "United-States"}' http://localhost:8000/predict
+```
+
 
 ## Set up S3
 
