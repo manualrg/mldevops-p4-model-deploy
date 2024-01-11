@@ -60,6 +60,26 @@ curl -X POST -H "Content-Type: application/json" -d '{"age": "52",
          "native-country": "United-States"}' http://localhost:8000/predict
 ```
 
+# DEploy on render
+
+[Deploy with FastAPI in Render](https://github.com/render-examples/fastapi)
+
+Root
+```
+starter/
+```
+
+Start Command
+```
+uvicorn main:app --host 0.0.0.0 --port $PORT
+```
+
+Set python version in environment variables (see `conda_env.yaml`):
+
+```
+PYTHON_VERSION=3.8.18
+```
+
 
 ## Set up S3
 
