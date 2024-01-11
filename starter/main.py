@@ -25,20 +25,44 @@ with open(fln_label_encoder, "rb") as file:
 
 # Pydantic model for request body
 class Example(BaseModel):
-    age: float
-    workclass: str
-    fnlgt: float
-    education: str
-    education_num: float = Field(alias="education-num")
-    marital_status: str = Field(alias="marital-status")
-    occupation: str
-    relationship: str
-    race: str
-    sex: str
-    capital_gain: float = Field(alias="capital-gain")
-    capital_loss: float = Field(alias="capital-loss")
-    hours_per_week: float = Field(alias="hours-per-week")
-    native_country: str = Field(alias="native-country")
+    age: float = 52
+    workclass: str = "Self-emp-not-inc"
+    fnlgt: float = 209642
+    education: str = "HS-grad"
+    education_num: float = Field(alias="education-num", default=9)
+    marital_status: str = Field(alias="marital-status",
+                                default="Married-civ-spouse")
+    occupation: str = "Exec-managerial"
+    relationship: str = "Husband"
+    race: str = "White"
+    sex: str = "Male"
+    capital_gain: float = Field(alias="capital-gain", default=0)
+    capital_loss: float = Field(alias="capital-loss", default=0)
+    hours_per_week: float = Field(alias="hours-per-week", default=45)
+    native_country: str = Field(alias="native-country", default="United-States")
+    
+    class Config:
+        schema_extra = {
+                "examples": [
+                    {
+                        "age": 39,
+                        "workclass": "State-gov",
+                        "fnlgt": 77516,
+                        "education": "Bachelors",
+                        "education-num": 13,
+                        "marital-status": "Never-married",
+                        "occupation":"Adm-clerical", 
+                        "relationship": "Not-in-family",
+                        "race": "White",
+                        "sex": "Male",
+                        "capital-gain": 2174,
+                        "capital-loss": 0,
+                        "hours-per-week": 40,
+                        "native-country": "United-States"
+                    }
+                ]
+            }
+
 
 
 @app.get("/")
