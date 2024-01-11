@@ -39,8 +39,9 @@ class Example(BaseModel):
     capital_gain: float = Field(alias="capital-gain", default=0)
     capital_loss: float = Field(alias="capital-loss", default=0)
     hours_per_week: float = Field(alias="hours-per-week", default=45)
-    native_country: str = Field(alias="native-country", default="United-States")
-    
+    native_country: str = Field(alias="native-country",
+                                default="United-States")
+
     class Config:
         schema_extra = {
                 "examples": [
@@ -51,7 +52,7 @@ class Example(BaseModel):
                         "education": "Bachelors",
                         "education-num": 13,
                         "marital-status": "Never-married",
-                        "occupation":"Adm-clerical", 
+                        "occupation": "Adm-clerical",
                         "relationship": "Not-in-family",
                         "race": "White",
                         "sex": "Male",
@@ -62,7 +63,6 @@ class Example(BaseModel):
                     }
                 ]
             }
-
 
 
 @app.get("/")
