@@ -45,6 +45,8 @@ def main():
 
     precision, recall, fbeta = compute_model_metrics(y_test, preds)
 
+    print(f"Model precision on test data: {precision}")
+    print(f"Model recall on test data: {recall}")
     print(f"Model f1-score on test data: {fbeta}")
 
     df_metrics_sex_slice = compute_model_metrics_on_slices(df_test, y_test, preds, feature="sex")
